@@ -4,21 +4,33 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
+
+// Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
-app.use("/uploads", express.static("uploads"));
 
-let videos = []; // simple in-memory DB
+// Static folders
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// In-memory DB
+let videos = [];
 
 /* ---------- MULTER (UPLOAD) ---------- */
 const storage = multer.diskStorage({
-  destination: "uploads/",
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
   }
 });
 const upload = multer({ storage });
+
+/* ---------- HOME ROUTE ---------- */
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 /* ---------- UPLOAD VIDEO ---------- */
 app.post("/api/upload", upload.single("video"), (req, res) => {
@@ -55,7 +67,7 @@ app.get("/api/videos", (req, res) => {
   res.json(result);
 });
 
-/* ---------- NOTIFICATIONS (FAKE) ---------- */
+/* ---------- NOTIFICATIONS ---------- */
 app.get("/api/notifications", (req, res) => {
   res.json({ count: 3 });
 });
@@ -65,6 +77,9 @@ app.get("/api/profile", (req, res) => {
   res.json({ email: "user@gmail.com" });
 });
 
-app.listen(3000, () => {
-  console.log("✅ Server running at http://localhost:3000");
+/* ---------- PORT (IMPORTANT) ---------- */
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
 });
