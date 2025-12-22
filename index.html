@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div>
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+        </div>
+
+        <div>
+            <input type="text" placeholder="Search">
+            <button>
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div>
+            <i class="fas fa-tv"></i>
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </header>
+
+    <!-- CATEGORY SCROLL -->
+    <section class="categories">
+        <button class="active" data-category="all">All</button>
+        <button data-category="trending">Trending</button>
+        <button data-category="music">Music</button>
+        <button data-category="movies">Movies</button>
+        <button data-category="live">Live</button>
+        <button data-category="gaming">Gaming</button>
+        <button data-category="news">News</button>
+        <button data-category="sports">Sports</button>
+    </section>
+
+    <!-- VIDEOS (JS yahin videos add karega) -->
+    <div class="videos"></div>
+
+    <!-- UPLOAD FORM (FOOTER SE PEHLE) -->
+    <hr>
+
+    <h3 style="padding:10px">Upload Video</h3>
+
+    <form id="uploadForm" style="padding:10px">
+        <input type="text" id="title" placeholder="Video Title" required><br><br>
+
+        <select id="category">
+            <option value="music">Music</option>
+            <option value="movies">Movies</option>
+            <option value="gaming">Gaming</option>
+            <option value="news">News</option>
+            <option value="sports">Sports</option>
+            <option value="live">Live</option>
+        </select><br><br>
+
+        <input type="file" id="videoFile" accept="video/mp4" required><br><br>
+
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- BOTTOM NAV (MOBILE) -->
+    <footer>
+        <div>
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+
+        <div>
+            <i class="fas fa-video"></i>
+            <span>Shorts</span>
+        </div>
+
+        <div>
+            <i class="fas fa-plus-circle"></i>
+        </div>
+
+        <div>
+            <i class="fas fa-users"></i>
+            <span>Subscriptions</span>
+        </div>
+
+        <div>
+            <i class="fas fa-user-circle"></i>
+            <span>You</span>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script src="script.js"></script>
+</body>
+</html>
